@@ -9,6 +9,10 @@ class Admin::ProjectsController < Admin::BaseController
       end
   end
   
+  def show
+    @project = Project.find_by_id(params[:id]) 
+    @todos = @project.todos
+  end
   def new
     @project = Project.new
   end

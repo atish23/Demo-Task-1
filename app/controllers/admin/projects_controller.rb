@@ -12,6 +12,7 @@ class Admin::ProjectsController < Admin::BaseController
   def show
     @project = Project.find_by_id(params[:id]) 
     @todos = @project.todos
+    @users = @project.users
   end
   def new
     @project = Project.new
@@ -34,7 +35,8 @@ class Admin::ProjectsController < Admin::BaseController
     project = Project.find_by_id(params[:id])
     project.users << User.find_by_id(params[:user_id])
     project.save!
-    render json: project
+    redirect_to(:back)
+    # render json: project
   end
 
 private

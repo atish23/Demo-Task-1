@@ -4,6 +4,7 @@ class CreateTodos < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :status
       t.integer :project_id
+
       t.timestamps
     end
   end

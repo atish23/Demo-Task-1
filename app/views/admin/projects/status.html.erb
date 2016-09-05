@@ -1,44 +1,51 @@
-<table class="table table-striped">
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
     <thead>
       <tr>
         <th>Status</th>
         <%@projects.each do |project|%>
-			<th><%= project.name%></th>
+			   <th><strong><%= project.name%></strong></th>
         <%end%>
         
       </tr>
     </thead>
     <tbody>
    <%# @todos.statuses.each do |status|%>
-       <tr>
-        <td>In Progress</td>
+       <tr class="active">
+        <td><h3>In Progress</h3></td>
         <% @projects.each do |project|%>
         		<td><% project.todos.each do |todo|%>
 					    <%if todo.status == "In_Progress" && project.id == todo.project_id%>
-                <%#= raise todo.inspect%>
-                <li><%=todo.name%> | <%= todo.users_todo.user.name%></li>
+                <ul>
+                  <li><mark><%=todo.name%></mark> | <%= todo.users_todo.user.name%></li>
+                </ul>
+                
               <%end%>
         		<%end%></td>
         	<%end%>
         
        </tr>
-       <tr>
-        <td>Done</td>
+       <tr class="info">
+        <td><h3>Done</h3></td>
           <% @projects.each do |project|%>
         		<td><% project.todos.each do |todo|%>
         			<%if todo.status == "Done" && project.id == todo.project_id%>
-						    <li><%=todo.name%>  | <%= todo.users_todo.user.name%></li>
+                <ul>
+                  <li><mark><%=todo.name%></mark> | <%= todo.users_todo.user.name%></li>
+                </ul>
 					    <%end%>
         		<%end%></td> 
         	<%end%>
               	
        </tr>
-       <tr>
-        <td>New</td>
+       <tr class="danger">
+        <td><h3>New</h3></td>
         <% @projects.each do |project|%>
         		<td><% project.todos.each do |todo|%>
 					    <%if todo.status == "New" && project.id == todo.project_id%>
-                <li><%=todo.name%>  | <%= todo.users_todo.user.name%></li>
+                <ul>
+                  <li><mark><%=todo.name%></mark> | <%= todo.users_todo.user.name%></li>
+                </ul>              
               <%end%>
         		<%end%></td> 
         	<%end%>
@@ -46,3 +53,4 @@
        </tr>
     </tbody>
   </table>
+  </div>

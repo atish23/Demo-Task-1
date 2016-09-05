@@ -33,12 +33,20 @@ class Admin::ProjectsController < Admin::BaseController
   
   def assign_project
     project = Project.find_by_id(params[:id])
-    project.users << User.find_by_id(params[:user_id])
+    user = User.find_by_id(params[:user_id])
+    project.users << user unless project.users.include?(user)
     project.save!
     redirect_to(:back)
     # render json: project
   end
 
+  def charts
+    @projects = Project.all
+  end
+
+  def status
+    @projects = Project.all
+  end
 private
   def project_params
     params.require(:project).permit!

@@ -1,0 +1,5 @@
+<%= form_tag(controller: "users", action: "update_todo", method: "post", class: "nifty_form") do %>
+  <%=hidden_field_tag(:id,@todo.id)%>	
+  <%= select_tag(:status, options_for_select(Todo.statuses.keys),{class: "form-control"}) %> 
+  <%= submit_tag "Update"%>
+<% end %>

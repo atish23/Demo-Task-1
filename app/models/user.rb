@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_and_belongs_to_many :projects, dependent: :destroy
   has_many :users_todos,  dependent: :destroy
   has_many :todos, through: :users_todos
+  scope :all_except_admin, -> (user) { where.not(id: user) }
 end

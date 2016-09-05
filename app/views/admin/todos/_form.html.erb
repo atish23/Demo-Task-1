@@ -16,7 +16,7 @@
 <div class="col-md-3">
   <div class="form-group">
   <%= label_tag(:user_id, "Developer") %>
-  <%= select_tag(:user_id, options_for_select(@project.users.map{|u| [u.to_s, u.id] }),{class: "form-control"}) %>    
+  <%= select_tag(:user_id, options_for_select(@project.users.map{|u| [u.name, u.id] }),{class: "form-control"}) %>    
   </div>    
 </div>
 
@@ -35,7 +35,7 @@
   <div class="col-md-7">
   <div class="form-group">
   <%= label_tag(:user_id, "Developer") %>
-  <%= select_tag(:user_id, options_for_select(User.all.map{|u| [u.to_s, u.id] unless @project.users.include?(u)}),{class: "form-control"}) %>    
+  <%= select_tag(:user_id, options_for_select(User.all_except_admin(current_user).map{|u| [u.name,u.id]}),{class: "form-control"}) %>    
   </div>    
   </div>
 

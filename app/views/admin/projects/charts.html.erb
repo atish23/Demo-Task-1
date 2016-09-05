@@ -1,0 +1,45 @@
+<% @projects.each do |project|%>
+	<h1><center><%= project.name%></center></h1>
+	<div class= "slot" id="chart_div_<%=project.id%>"%></div>
+<%end%>
+    <script type="text/javascript">
+    
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+	    $('div.slot').each(function(i, d) {
+	      var id = d.id.split('_');
+	      google.charts.setOnLoadCallback((function(){
+	      	drawChart(id[2]);
+	      }));
+	    });
+      function drawChart(id) {
+   			$.ajax({
+		        url: "api/list/"+id,
+		        dataType: "json",
+		        success: function (jsonData) {
+		        	//for (var i = 0; i < jsonData.length; i++) {
+			            var data = new google.visualization.DataTable();
+			            console.log(jsonData)
+			            // assumes "word" is a string and "count" is a number
+			            data.addColumn('string', 'status');
+			            data.addColumn('number', 'count');
+
+			                 data.addRow(["In_Progress", jsonData.In_Progress]);
+			                 data.addRow(["Done", jsonData.Done]);
+			                 data.addRow(["New", jsonData.New]);
+			             
+
+			            var options = {
+			                title: 'Certificate details',
+			                is3D: true
+			            };
+		            
+		            	var chart = new google.visualization.PieChart(document.getElementById('chart_div_'+id));
+		            	chart.draw(data, options);
+		        	//}
+		        }
+		    });
+      }
+</script>

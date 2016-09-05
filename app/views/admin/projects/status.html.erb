@@ -1,5 +1,4 @@
-
-  <table class="table table-striped">
+<table class="table table-striped">
     <thead>
       <tr>
         <th>Status</th>
@@ -14,10 +13,10 @@
        <tr>
         <td>In Progress</td>
         <% @projects.each do |project|%>
-        		<td><% current_user.todos.each do |todo|%>
+        		<td><% project.todos.each do |todo|%>
 					    <%if todo.status == "In_Progress" && project.id == todo.project_id%>
-                <%#= raise current_user.inspect%>
-                <li><%= link_to todo.name,edit_todo_path(todo) %> | <%= todo.status%></li>
+                <%#= raise todo.inspect%>
+                <li><%=todo.name%> | <%= todo.users_todo.user.name%></li>
               <%end%>
         		<%end%></td>
         	<%end%>
@@ -26,9 +25,9 @@
        <tr>
         <td>Done</td>
           <% @projects.each do |project|%>
-        		<td><% current_user.todos.each do |todo|%>
+        		<td><% project.todos.each do |todo|%>
         			<%if todo.status == "Done" && project.id == todo.project_id%>
-						    <li><%= link_to todo.name,edit_todo_path(todo) %> | <%= todo.status%></li>
+						    <li><%=todo.name%>  | <%= todo.users_todo.user.name%></li>
 					    <%end%>
         		<%end%></td> 
         	<%end%>
@@ -37,9 +36,9 @@
        <tr>
         <td>New</td>
         <% @projects.each do |project|%>
-        		<td><% current_user.todos.each do |todo|%>
+        		<td><% project.todos.each do |todo|%>
 					    <%if todo.status == "New" && project.id == todo.project_id%>
-                <li><%= link_to todo.name,edit_todo_path(todo) %> | <%= todo.status%></li>
+                <li><%=todo.name%>  | <%= todo.users_todo.user.name%></li>
               <%end%>
         		<%end%></td> 
         	<%end%>

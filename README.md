@@ -1,24 +1,21 @@
-# README
+Heroku link
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+1.Admin
 
-* Ruby version
+*Goto https://todolistpro.herokuapp.com/admin
 
-* System dependencies
+email:      admin@admin.com
+password :  admin123
 
-* Configuration
+*Create new Projects
+*Add developers to it 
+*Assign task and status of task to added developers
 
-* Database creation
 
-* Database initialization
+2.Developers
 
-* How to run the test suite
+*Login and check users task and update status
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+dhiraj@@promobi.com 
+pass: 12345678
